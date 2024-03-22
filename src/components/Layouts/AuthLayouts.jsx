@@ -11,7 +11,7 @@ const AuthLayout = (props) => {
           {children}
 
           {/* Bisa Menggunakan Seperti ini --> Operator Ternary dan && */}
-          {/* <p className="text-sm mt-5 text-center">
+          <p className="text-sm mt-5 text-center">
           {type === 'login' ? "Don't have an account? " : "Already have an account? "} 
 
           {type === "login" && (
@@ -19,11 +19,11 @@ const AuthLayout = (props) => {
           )}
           {type === "register" && (
             <Link to="/login" className="font-bold text-blue-600">Login</Link>
-          )}</p> */}
+          )}</p>
 
 
           {/* Atau seperti ini --> Menggunakan IF statement */}
-          <Navigation type={type} />
+          {/* <Navigation type={type} /> */}
 
         </div>
      </div>
@@ -33,22 +33,22 @@ const AuthLayout = (props) => {
 
 
 // IF Statement untuk Conditional Rendering
-const Navigation = ({type}) => {
-  if (type === 'login') {
-    return (
-      <p className="text-sm mt-5 text-center">
-          Do nOt have an account?{" "}
-          <Link to="/register" className="text-blue-600 font-medium ml-1">Register</Link>
-      </p>
-    );
-  } else {
-    return (
-      <p className="text-sm mt-5 text-center">
-          Already have an account?{" "}
-          <Link to="/login" className="text-blue-600 font-medium ml-1">Login</Link>
-      </p>
-    );
-  }
-}
+// const Navigation = ({type}) => {
+//   if (type === 'login') {
+//     return (
+//       <p className="text-sm mt-5 text-center">
+//           Do not have an account?{" "}
+//           <Link to="/register" className="text-blue-600 font-bold ml-1">Register</Link>
+//       </p>
+//     );
+//   } else {
+//     return (
+//       <p className="text-sm mt-5 text-center">
+//           Already have an account?{" "}
+//           <Link to="/login" className="text-blue-600 font-bold ml-1">Login</Link>
+//       </p>
+//     );
+//   }
+// }
 
 export default AuthLayout;
