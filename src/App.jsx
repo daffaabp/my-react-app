@@ -1,26 +1,15 @@
 import React from "react";
-import Button from "./components/Elements/Button";
+import LoginPage from "./pages/login";
+import RegisterPage from "./pages/register";
 
-// Desain atom adalah metodologi yang terdiri dari lima tahapan berbeda yang bekerja sama untuk menciptakan sistem desain antarmuka dengan cara yang lebih disengaja dan hierarkis. Lima tahap desain atom adalah:
-
-// 1. atom
-// 2. Molekul
-// 3. Organisme
-// 4. Templat
-// 5. Halaman
 
 function App() {
-
   return (
-    <div className="flex justify-center bg-blue-600 min-h-screen items-center">
-      <div className="flex gap-x-3">
-        <Button variant="bg-red-700">Login</Button>
-        <Button variant="bg-slate-700">Logout</Button>
-        <Button></Button>
-        
-      </div>
+    <div className="flex justify-center min-h-screen items-center">
+      {/* <LoginPage></LoginPage> */}
+      <RegisterPage />
     </div>
-  )
+  );
 }
 
 export default App;
