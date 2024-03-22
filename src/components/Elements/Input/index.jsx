@@ -10,6 +10,6 @@ const InputForm = (props) => {
       <Input name={name} type={type} placeholder={placeholder}/>
     </div>
   );
-} 
+}; 
 
 export default InputForm;
