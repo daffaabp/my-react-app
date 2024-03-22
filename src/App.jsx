@@ -1,43 +1,21 @@
 import React from "react";
+import Button from "./components/Elements/Button";
 
-// menggunakan cara Class Component
-// class Button extends React.Component {
-//   render() {
-//     return (
-//       <button className="h-10 px-6 font-semibold rounded-md bg-slate-700 text-white" type="submit">
-//           Buy now
-//       </button>
-//     );
-//   }
-// }
+// Desain atom adalah metodologi yang terdiri dari lima tahapan berbeda yang bekerja sama untuk menciptakan sistem desain antarmuka dengan cara yang lebih disengaja dan hierarkis. Lima tahap desain atom adalah:
 
-// function ButtonBlack() {
-//   return (
-//     <button className="h-10 px-6 font-semibold rounded-md bg-black text-white" type="submit">
-//           Buy now
-//       </button>
-//   );
-// }
-
-
-// menggunakan cara Functional Component with Arrow Function
-const Button = (props) => {
-  // destructuring
-  const {children, variant = "bg-black"} = props;
-  return (
-    <button className={`h-10 px-6 font-semibold rounded-md ${variant} text-white`} type="submit">
-          {children}
-      </button>
-  );
-}
+// 1. atom
+// 2. Molekul
+// 3. Organisme
+// 4. Templat
+// 5. Halaman
 
 function App() {
 
   return (
     <div className="flex justify-center bg-blue-600 min-h-screen items-center">
       <div className="flex gap-x-3">
-        <Button variant="bg-red-700" text="Login">Login</Button>
-        <Button variant="bg-slate-700" text="Logout">Logout</Button>
+        <Button variant="bg-red-700">Login</Button>
+        <Button variant="bg-slate-700">Logout</Button>
         <Button></Button>
         
       </div>
@@ -45,4 +23,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
