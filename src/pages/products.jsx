@@ -1,6 +1,7 @@
 import { Fragment, useState } from "react";
 import CardProduct from "../components/Fragments/CardProduct";
 import Button from "../components/Elements/Button";
+import Counter from "../components/Fragments/Counter";
 
 const products = [
   {
@@ -28,6 +29,16 @@ const products = [
 
 // Tangkap Email yang ada pada LocalStorage
 const email = localStorage.getItem('email');
+
+
+// Lifecycle React
+// 1. Fase Mounting --> fase dimana sebuah komponen itu diciptakan
+// 2. Fase Updating --> sebuah komponen bertumbuh, berkembang
+// 3. Fase Unmounting --> fase ketika komponen dihancurkan atau tidak ditampilkan lagi di websitenya
+
+// a. ComponenDidMount --> di eksekusi ketika Mounting
+
+
 
 
 const ProductsPage = () => {
@@ -117,6 +128,10 @@ const ProductsPage = () => {
               </tbody>
             </table>
         </div>
+      </div>
+
+      <div className="mt-5 flex justify-center mb-5">
+        <Counter ></Counter>
       </div>
 
     </Fragment>
