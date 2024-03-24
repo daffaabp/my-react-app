@@ -4,6 +4,7 @@ import Button from "../components/Elements/Button";
 import { getProducts } from "../services/product.service";
 import { getUsername } from "../services/auth.service";
 import Counter from "../components/Fragments/Counter";
+import { useLogin } from "../hooks/useLogin";
 
 
 const ProductsPage = () => {
@@ -18,20 +19,11 @@ const ProductsPage = () => {
   const [products, setProducts] = useState([]);
 
   // definsikan stateBaru untuk const username
-  const [username, setUsername] = useState("");
+  const username = useLogin();
 
   useEffect(() => {
     setCart(JSON.parse(localStorage.getItem("cart")) || []);
   }, []);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if(token) {
-      setUsername(getUsername(token));
-    } else {
-      window.location.href = "/login";
-    }
-  }, [])
 
   // memanggil data API dengan useEffect
   useEffect(() => {
