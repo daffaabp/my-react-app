@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect, useRef } from "react";
 import CardProduct from "../components/Fragments/CardProduct";
 import Button from "../components/Elements/Button";
 // import Counter from "../components/Fragments/Counter";
@@ -29,16 +29,6 @@ const products = [
 
 // Tangkap Email yang ada pada LocalStorage
 const email = localStorage.getItem('email');
-
-
-// Lifecycle React
-// 1. Fase Mounting --> fase dimana sebuah komponen itu diciptakan
-// 2. Fase Updating --> sebuah komponen bertumbuh, berkembang
-// 3. Fase Unmounting --> fase ketika komponen dihancurkan atau tidak ditampilkan lagi di websitenya
-
-// a. ComponenDidMount --> di eksekusi ketika Mounting
-
-
 
 
 const ProductsPage = () => {
@@ -81,6 +71,27 @@ const ProductsPage = () => {
       ]);
     }
   };
+  
+  // Penggunaan useReff
+  // useReff hampir sama seperti useEffect, dia bisa menyimpan informasi didalamnya. Tapi yang membedakan adalah useReff ini tidak akan melakukan re render component 
+  const cartRef = useRef(JSON.parse(localStorage.getItem("cart")) || []);
+
+  const handleAddToCartRef = (id) => {
+    cartRef.current = [...cartRef.current, {id, qty: 1}];
+    localStorage.setItem("cart", JSON.stringify(cartRef.current));
+  };
+
+  // Penggunaan useReff untuk memanipulasi DOM --> seperti document.getElementByID --> untuk menghilangkan total Price apabila tidak ada cart yang dipilih
+  const totalPriceRef = useRef(null);
+  useEffect(() => {
+    if(cart.length > 0) {
+      totalPriceRef.current.style.display = "table-row";
+    } else {
+      totalPriceRef.current.style.display = "none";
+    }
+  }, [cart]);
+
+
 
   return (
     <Fragment>
@@ -138,7 +149,7 @@ const ProductsPage = () => {
                 })}
 
                 {/* Total Price */}
-                <tr>
+                <tr ref={totalPriceRef}>
                   <td colSpan={3}><b>Total Price</b></td>
                   <td>
                     <b>
