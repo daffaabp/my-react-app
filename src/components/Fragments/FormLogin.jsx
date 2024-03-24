@@ -1,23 +1,31 @@
+import { login } from "../../services/auth.service";
 import Button from "../Elements/Button";
 import InputForm from "../Elements/Input";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const FormLogin = () => {
+  const [loginFailed, setLoginFailed] = useState("");
   // Handle Klik untuk Login
   const handleLogin = (e) => {
     e.preventDefault();
-    localStorage.setItem("email", e.target.email.value);
-    localStorage.setItem("password", e.target.password.value);
-    // console.log(e.target.email.value);
-    // console.log(e.target.password.value);
-    // console.log("login");
-    window.location.href = "/products";
+    const data = {
+      username: e.target.username.value,
+      password: e.target.password.value
+    }
+    login(data, (status, res) => {
+      if(status) {
+        localStorage.setItem("token", res);
+        window.location.href = "/products";
+      } else {
+        setLoginFailed(res.response.data);
+      }
+    });
   };
 
   // Penggunaan useRef untuk mengarahkan mouse di input Email ketika form Login dibuka
-  const emailRef = useRef(null);
+  const usernameRef = useRef(null);
   useEffect(() => {
-    emailRef.current.focus();
+    usernameRef.current.focus();
   }, []);
 
 
@@ -25,10 +33,11 @@ const FormLogin = () => {
   return (
     <form onSubmit={handleLogin}>
 
-      <InputForm label="Email" type="email" placeholder="example@gmail.com" name="email" ref={emailRef} />
+      <InputForm label="username" type="text" placeholder="johnd" name="username" ref={usernameRef} />
       <InputForm label="Password" type="password" placeholder="*****" name="password" />
            
       <Button classname="bg-blue-600 w-full" type="submit">Login</Button>
+      {loginFailed && <p className="text-red-500 text-center mt-5">{loginFailed}</p>}
     </form>
   );
 }
