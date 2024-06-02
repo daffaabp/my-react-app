@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Button from "../Elements/Button";
 
 // Dalam React.js, komponen bersarang (nested component) adalah komponen yang tertanam di dalam komponen lain. Ini menciptakan struktur hierarki di mana komponen dapat dipecah menjadi bagian yang lebih kecil dan dapat digunakan kembali. Berikut penjelasan konsepnya:
@@ -12,11 +13,11 @@ const CardProduct = (props) => {
 };
 
 const Header = (props) => {
-  const {image} = props;
+  const {image, id} = props;
   return(
-    <a href="#">
+    <Link to={`/product/${id}`}>
       <img src={image} alt="product" className="p-8 rounded-t-lg h-60 w-full object-cover" />
-    </a>
+    </Link>
   );
 }
 
