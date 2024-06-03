@@ -33,8 +33,8 @@ const FormLogin = () => {
   return (
     <form onSubmit={handleLogin}>
 
-      <InputForm label="username" type="text" placeholder="johnd" name="username" ref={usernameRef} />
-      <InputForm label="Password" type="password" placeholder="*****" name="password" />
+      <InputForm label="username (johnd)" type="text" placeholder="username" name="username" ref={usernameRef} />
+      <InputForm label="Password (m38rmF$)" type="password" placeholder="*****" name="password" />
            
       <Button classname="bg-blue-600 w-full" type="submit">Login</Button>
       {loginFailed && <p className="text-red-500 text-center mt-5">{loginFailed}</p>}
