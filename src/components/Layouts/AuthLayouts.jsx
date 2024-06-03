@@ -1,36 +1,53 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { DarkMode } from "../../context/DarkMode";
 
 const AuthLayout = (props) => {
-  const {children, title, type} = props;
-  return (
-     <div className="flex justify-center min-h-screen items-center">
-        <div className="w-full max-w-xs">
-          <h1 className="text-blue-600 mb-2 text-3xl font-bold">{title}</h1>
-          <p className="font-medium text-slate-500 mb-8">Welcome, please enter your details</p>
-        
-          {children}
+  const { children, title, type } = props;
+  const { isDarkMode, setIsDarkMode } = useContext(DarkMode);
 
-          {/* Bisa Menggunakan Seperti ini --> Operator Ternary dan && */}
-          <p className="text-sm mt-5 text-center">
-          {type === 'login' ? "Don't have an account? " : "Already have an account? "} 
+  return (
+    <div
+      className={`flex justify-center min-h-screen items-center ${
+        isDarkMode && "bg-slate-900"
+      }`}
+    >
+      <div className="w-full max-w-xs">
+        <button className="absolute right-2 top-2 bg-blue-600 p-2 text-white rounded" onClick={() => setIsDarkMode(!isDarkMode)}>
+          {isDarkMode ? "Light" : "Dark"}
+        </button>
+        
+        <h1 className="text-blue-600 mb-2 text-3xl font-bold">{title}</h1>
+        <p className="font-medium text-slate-500 mb-8">
+          Welcome, please enter your details
+        </p>
+
+        {children}
+
+        {/* Bisa Menggunakan Seperti ini --> Operator Ternary dan && */}
+        <p className="text-sm mt-5 text-center">
+          {type === "login"
+            ? "Don't have an account? "
+            : "Already have an account? "}
 
           {type === "login" && (
-            <Link to="/register" className="font-bold text-blue-600">Register</Link>
+            <Link to="/register" className="font-bold text-blue-600">
+              Register
+            </Link>
           )}
           {type === "register" && (
-            <Link to="/login" className="font-bold text-blue-600">Login</Link>
-          )}</p>
+            <Link to="/login" className="font-bold text-blue-600">
+              Login
+            </Link>
+          )}
+        </p>
 
-
-          {/* Atau seperti ini --> Menggunakan IF statement */}
-          {/* <Navigation type={type} /> */}
-
-        </div>
-     </div>
-   
+        {/* Atau seperti ini --> Menggunakan IF statement */}
+        {/* <Navigation type={type} /> */}
+      </div>
+    </div>
   );
-}
-
+};
 
 // IF Statement untuk Conditional Rendering
 // const Navigation = ({type}) => {
