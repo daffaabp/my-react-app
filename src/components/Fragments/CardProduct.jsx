@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import Button from "../Elements/Button";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/slices/cartSlice";
 
 // Dalam React.js, komponen bersarang (nested component) adalah komponen yang tertanam di dalam komponen lain. Ini menciptakan struktur hierarki di mana komponen dapat dipecah menjadi bagian yang lebih kecil dan dapat digunakan kembali. Berikut penjelasan konsepnya:
 
@@ -34,11 +36,12 @@ const Body = (props) => {
 };
 
 const Footer = (props) => {
-  const {price, handleAddToCart, id} = props;
+  const {price, id} = props;
+  const dispatch = useDispatch();
   return (
     <div className="flex items-center justify-between px-5 pb-5">
       <span className="text-xl font-bold text-white">$ {price.toLocaleString('id-ID', {styles: 'currency', currency: 'USD'})}</span>
-      <Button classname="bg-blue-600" onClick={() => handleAddToCart(id)}>Add To Chart</Button>
+      <Button classname="bg-blue-600" onClick={() => dispatch(addToCart({id, qty: 1}))}>Add To Chart</Button>
     </div>
   );
 }
